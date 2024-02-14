@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package tinkoff.cloud.stt.v1;
+option go_package = "github.com/Tinkoff/voicekit-examples/golang/pkg/tinkoff/cloud/stt/v1";
+option objc_class_prefix = 'TVKSR';
+
+import "google/protobuf/duration.proto";
+import "google/api/annotations.proto";
+
+service SpeechToText { // Speech recognition.
+  rpc Recognize(RecognizeRequest) returns (RecognizeResponse) { // Method to recognize whole audio at once: sending complete audio, getting complete recognition result.
+    option (google.api.http) = {
+      post: "/v1/stt:recognize"
+      body: "*"
+    };
+  }
+  rpc StreamingRecognize(stream StreamingRecognizeRequest)
+      returns (stream StreamingRecognizeResponse); // Method for streaming recognition.
+
+  rpc StreamingUnaryRecognize(stream StreamingUnaryRecognizeRequest) returns (RecognizeResponse) { // Method to synchronous recognize audio stream. Returns recognition result after all audio has been sent and processed.
+    option (google.api.http) = {
+      post: "/v1/stt:streaming_unary_recognize";
+      body: "*";
+    };
+  }
+}
