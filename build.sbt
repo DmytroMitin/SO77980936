@@ -19,6 +19,7 @@ lazy val root = project
       "dev.zio" %% "zio-http" % "0.0.5",
       "com.fasterxml.jackson.core" % "jackson-databind" % "2.16.1",
       "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.16.1",
-      "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf"
+      "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf",
+      "com.google.api.grpc" % "googleapis-common-protos" % "0.0.3" % "protobuf"
     )
   )
